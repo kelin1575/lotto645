@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Lottery ball base ── */
+.lotto-ball {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+  flex-shrink: 0;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Size variants */
+.lotto-ball-sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+}
+
+.lotto-ball-md {
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1rem;
+}
+
+.lotto-ball-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.25rem;
+}
+
+/* Color ranges */
+.lotto-ball-yellow {
+  background: linear-gradient(145deg, #ffd740, #f59e0b);
+  color: #1a1a1a;
+}
+
+.lotto-ball-blue {
+  background: linear-gradient(145deg, #60a5fa, #2563eb);
+  color: #fff;
+}
+
+.lotto-ball-red {
+  background: linear-gradient(145deg, #f87171, #dc2626);
+  color: #fff;
+}
+
+.lotto-ball-gray {
+  background: linear-gradient(145deg, #9ca3af, #6b7280);
+  color: #fff;
+}
+
+.lotto-ball-green {
+  background: linear-gradient(145deg, #34d399, #059669);
+  color: #fff;
+}
+
+/* Bonus ball indicator */
+.lotto-ball-bonus {
+  ring: 3px solid #f59e0b;
+  box-shadow: 0 0 0 3px #f59e0b, inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall linear infinite;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
