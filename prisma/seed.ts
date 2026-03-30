@@ -1,7 +1,10 @@
+import "dotenv/config"
 import { PrismaClient } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 import bcrypt from 'bcryptjs'
 
-const prisma = new PrismaClient()
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter })
 
 async function main() {
   const adminEmail = process.env.ADMIN_EMAIL || 'admin@lotto645.com'
@@ -19,9 +22,9 @@ async function main() {
         subscriptionStatus: 'ACTIVE',
       },
     })
-    console.log('Admin account created:', adminEmail)
+    console.log(`관리자 계정 생성: ${adminEmail}`)
   } else {
-    console.log('Admin account already exists:', adminEmail)
+    console.log('관리자 계정이 이미 존재합니다.')
   }
 }
 
